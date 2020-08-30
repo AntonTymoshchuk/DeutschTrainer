@@ -1,0 +1,166 @@
+<AppButton@Button>
+    font_size: '18sp'
+    color: [0, 0, 0, 1]
+
+<AppLabel@Label>
+    font_size: '18sp'
+    color: [0, 0, 0, 1]
+
+<AppTextInput@TextInput>
+    font_size: '18sp'
+    size_hint_y: None
+    multiline: False
+    height: dp(34)
+
+<TrainingTypeButton@Button>
+    text_size: (120, 100)
+    font_size: '18sp'
+    color: [0, 0, 0, 1]
+
+<TestLabel@Label>
+    font_size: '24sp'
+    color: [0, 0, 0, 1]
+
+<TestTextInput@TextInput>
+    font_size: '24sp'
+    color: [0, 0, 0, 1]
+    size_hint_y: None
+    multiline: False
+    height: dp(42)
+
+<DeutschTrainerLayout>
+    rows: 4
+    BoxLayout:
+        size_hint: (1, 0.07)
+        orientation: 'horizontal'
+        AppButton:
+            id: add_words_button
+            on_press: root.allow_user_to_add_words()
+            text: 'Добавить слова'
+        AppButton:
+            id: start_training_button
+            on_press: root.allow_user_to_start_training()
+            text: 'Тренироватся'
+    GridLayout:
+        rows: 2
+        size_hint: (1, 0.23)
+        GridLayout:
+            size_hint: (1, 0.7)
+            cols: 2
+            BoxLayout:
+                orientation: 'vertical'
+                AnchorLayout:
+                    position_x: 'left'
+                    position_y: 'center'
+                    AppLabel:
+                        text: 'Немецкий : '
+                AnchorLayout:
+                    position_y: 'center'
+                    AppTextInput:
+                        id: german_word_text_input
+                        disabled: True
+            BoxLayout:
+                orientation: 'vertical'
+                AnchorLayout:
+                    position_x: 'left'
+                    position_y: 'center'
+                    AppLabel:
+                        text: 'Русский : '
+                AnchorLayout:
+                    position_y: 'center'
+                    AppTextInput:
+                        id: russian_word_text_input
+                        disabled: True
+        AppButton:
+            id: accept_adding_words_button
+            disabled: True
+            on_press: root.accept_adding_new_words()
+            text: 'Добавить слова'
+            size_hint: (1, 0.3)
+    BoxLayout:
+        size_hint: (1, 0.2)
+        orientation: 'horizontal'
+        TrainingTypeButton:
+            id: start_visual_russian_to_verbal_deutsch_training
+            disabled: True
+            text: 'Зрительный (русский) Вербальный (немецкий)'
+            on_press: root.start_visual_russian_to_verbal_deutsch()
+        TrainingTypeButton:
+            id: start_visual_russian_to_written_deutsch_training
+            disabled: True
+            text: 'Зрительный (русский) Письменный (немецкий)'
+            on_press: root.start_visual_russian_to_written_deutsch()
+        TrainingTypeButton:
+            id: start_hearing_russian_to_verbal_deutsch_training
+            disabled: True
+            text: 'Слуховой (русский) Вербальный (немецкий)'
+            on_press: root.start_hearing_russian_to_verbal_deutsch()
+        TrainingTypeButton:
+            id: start_hearing_russian_to_written_deutsch_training
+            disabled: True
+            text: 'Слуховой (русский) Письменный (немецкий)'
+            on_press: root.start_hearing_russian_to_written_deutsch()
+        TrainingTypeButton:
+            id: start_visual_deutsch_to_verbal_russian_training
+            disabled: True
+            text: 'Зрительный (немецкий) Вербальный (русский)'
+            on_press: root.start_visual_deutsch_to_verbal_russian()
+        TrainingTypeButton:
+            id: start_visual_deutsch_to_written_russian_training
+            disabled: True
+            text: 'Зрительный (немецикй) Письменный (русский)'
+            on_press: root.start_visual_deutsch_to_written_russian()
+        TrainingTypeButton:
+            id: start_hearing_deutsch_to_verbal_russian_training
+            disabled: True
+            text: 'Слуховой (немецкий) Вербальный (русский)'
+            on_press: root.start_hearing_deutsch_to_verbal_russian()
+        TrainingTypeButton:
+            id: start_hearing_deutsch_to_written_russian_training
+            disabled: True
+            text: 'Слуховой (немецкий) Письменный (русский)'
+            on_press: root.start_hearing_deutsch_to_written_russian()
+    GridLayout:
+        size_hint: (1, 0.5)
+        rows: 3
+        BoxLayout:
+            size_hint: (1, 0.7)
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                TestLabel:
+                    id: question_language_label
+                TestLabel:
+                    id: question_label
+            GridLayout:
+                rows: 2
+                TestLabel:
+                    id: answer_language_label
+                    size_hint: (1, 0.5)
+                GridLayout:
+                    rows: 2
+                    size_hint: (1, 0.5)
+                    AnchorLayout:
+                        size_hint: (1, 0.5)
+                        position_y: 'center'
+                        TestTextInput:
+                            id: answer_text_input
+                            disabled: True
+                    AnchorLayout:
+                        size_hint: (1, 0.5)
+                        position_y: 'center'
+                        AppButton:
+                            id: accept_answer_button
+                            disabled: True
+                            size_hint: (1, 0.8)
+                            text: 'Сдать ответ на проверку'
+                            on_press: root.accept_answer_button_press()
+        AppLabel:
+            id: test_result_label
+            size_hint: (1, 0.15)
+        AppButton:
+            id: quit_training_button
+            disabled: True
+            text: 'Остановить тренировку после этого вопроса'
+            size_hint: (1, 0.15)
+            on_press: root.quit_training_after_current_question()
